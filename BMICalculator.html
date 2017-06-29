@@ -3,8 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>BMI Calculator</title>
+    <script language="JavaScript" type="text/javascript">
+        function calculateBMI() {
+            //get variables
+            var hfeet = parseFloat(document.getElementById("height-feet").value);
+            var hinch = parseFloat(document.getElementById("height-inch").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            //math
+            var heightInches = (hfeet * 12) + hinch;
+            var bmi = (weight * 703)/Math.pow(heightInches, 2);
+
+            //out
+            alert("Your BMI is " + bmi);
+        }
+    </script>
 </head>
 <body>
+
+    <h1>BMI Calculator</h1>
+
+    <div id="content">
+    <form name="myForm" method="get">
+        <table id="overview" border="1">
+            <tbody>
+                <tr>
+                    <td>Underweight</td>
+                    <td> Less than 18.5</td>
+                </tr>
+                <tr>
+                    <td>Normal Weight</td>
+                    <td>18.5 - 24.9</td>
+                </tr>
+                <tr>
+                    <td>Overweight</td>
+                    <td>25 - 29.9</td>
+                </tr>
+                <tr>
+                    <td>Obesity</td>
+                    <td>30 or more</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="height-feet">Height</label>
+                    </td>
+                    <td>
+                        <input type="text" id="height-feet" name="height-feet" value=""> ft <input type="text" id="height-inch" name="height-inch" value=""> in
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="weight">Weight</label>
+                    </td>
+                    <td>
+                        <input type="text" id="weight" name="weight" value=""> lbs
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" id="calculate" name="calculate" value="Calculate" onclick="calculateBMI();">
+                        <input type="reset" id="Reset" name="Reset" value="Reset">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    </div>
 
 </body>
 </html>
