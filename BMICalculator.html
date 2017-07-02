@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>BMI Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script language="JavaScript" type="text/javascript">
+        var bmi;
+
         function calculateBMI() {
             //get variables
             var hfeet = parseFloat(document.getElementById("height-feet").value);
@@ -12,39 +15,78 @@
 
             //math
             var heightInches = (hfeet * 12) + hinch;
-            var bmi = (weight * 703)/Math.pow(heightInches, 2);
+            bmi = (weight * 703)/Math.pow(heightInches, 2);
+
+            //logic
+            var message;
+            if (bmi >= 30) {
+                message = "You are obese."
+            } else if (bmi >= 25) {
+                message = "You are overweight."
+            } else if  (bmi >= 18.5) {
+                message = "You are normal weight."
+            } else {
+                message = "You are underweight."
+            }
 
             //out
-            alert("Your BMI is " + bmi);
+            var outputdiv = document.getElementById("output");
+            var paragraph = document.createElement("p");
+            var text = document.createTextNode("Your BMI is " + bmi + ". " + message);
+
+            paragraph.appendChild(text);
+            outputdiv.appendChild(paragraph);
+
+            $(document).ready(function() {
+                $("button").click(function(){
+                    if (bmi >= 30) {
+                        $("under").css("background-color", "yellow")
+                    } else if (bmi >= 25) {
+                        $("under").css("background-color", "yellow")
+                    } else if  (bmi >= 18.5) {
+                        $("under").css("background-color", "yellow")
+                    } else {
+                        $("under").css("background-color", "yellow")
+                    }
+                });
+            });
         }
     </script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+
 </head>
 <body>
 
     <h1>BMI Calculator</h1>
 
-    <div id="content">
     <form name="myForm" method="get">
         <table id="overview" border="1">
             <tbody>
-                <tr>
+                <tr id="under">
                     <td>Underweight</td>
                     <td> Less than 18.5</td>
                 </tr>
-                <tr>
+                <tr id="normal">
                     <td>Normal Weight</td>
                     <td>18.5 - 24.9</td>
                 </tr>
-                <tr>
+                <tr id="over">
                     <td>Overweight</td>
                     <td>25 - 29.9</td>
                 </tr>
-                <tr>
+                <tr id="obese">
                     <td>Obesity</td>
                     <td>30 or more</td>
                 </tr>
             </tbody>
         </table>
+        <br>
+        <br>
         <table>
             <tbody>
                 <tr>
@@ -65,6 +107,7 @@
                 </tr>
                 <tr>
                     <td>
+                        <br>
                         <input type="button" id="calculate" name="calculate" value="Calculate" onclick="calculateBMI();">
                         <input type="reset" id="Reset" name="Reset" value="Reset">
                     </td>
@@ -72,6 +115,7 @@
             </tbody>
         </table>
     </form>
+    <div id="output">
     </div>
 
 </body>
