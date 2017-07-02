@@ -49,6 +49,10 @@
                     }
             });
         }
+
+        function clearform() {
+            document.getElementById("output").innerHTML = "";
+        }
     </script>
 
     <style>
@@ -107,7 +111,7 @@
                     <td>
                         <br>
                         <input type="button" id="calculate" name="calculate" value="Calculate" onclick="calculateBMI();">
-                        <input type="reset" id="Reset" name="Reset" value="Reset">
+                        <input type="reset" id="Reset" name="Reset" value="Reset" onclick="clearform();">
                     </td>
                 </tr>
             </tbody>
