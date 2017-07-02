@@ -38,17 +38,15 @@
             outputdiv.appendChild(paragraph);
 
             $(document).ready(function() {
-                $("button").click(function(){
                     if (bmi >= 30) {
-                        $("under").css("background-color", "yellow")
+                        $("#obese").css("background-color", "yellow")
                     } else if (bmi >= 25) {
-                        $("under").css("background-color", "yellow")
+                        $("#over").css("background-color", "yellow")
                     } else if  (bmi >= 18.5) {
-                        $("under").css("background-color", "yellow")
+                        $("#normal").css("background-color", "yellow")
                     } else {
-                        $("under").css("background-color", "yellow")
+                        $("#under").css("background-color", "yellow")
                     }
-                });
             });
         }
     </script>
