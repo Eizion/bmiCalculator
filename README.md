@@ -1,1 +1,3 @@
-# bmiCalculator
+# bmi Calculator
+
+Javascript, JQuery, Ajax
