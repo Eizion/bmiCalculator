@@ -1,0 +1,125 @@
+<!--Created by Joe Vo-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script language="JavaScript" type="text/javascript">
+        var bmi;
+
+        function calculateBMI() {
+            //get variables
+            var hfeet = parseFloat(document.getElementById("height-feet").value);
+            var hinch = parseFloat(document.getElementById("height-inch").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            //math
+            var heightInches = (hfeet * 12) + hinch;
+            bmi = (weight * 703)/Math.pow(heightInches, 2);
+
+            //logic
+            var message;
+            if (bmi >= 30) {
+                message = "You are obese."
+            } else if (bmi >= 25) {
+                message = "You are overweight."
+            } else if  (bmi >= 18.5) {
+                message = "You are normal weight."
+            } else {
+                message = "You are underweight."
+            }
+
+            //out
+            var outputdiv = document.getElementById("output");
+            var paragraph = document.createElement("p");
+            var text = document.createTextNode("Your BMI is " + bmi + ". " + message);
+
+            paragraph.appendChild(text);
+            outputdiv.appendChild(paragraph);
+
+            $(document).ready(function() {
+                    if (bmi >= 30) {
+                        $("#obese").css("background-color", "yellow")
+                    } else if (bmi >= 25) {
+                        $("#over").css("background-color", "yellow")
+                    } else if  (bmi >= 18.5) {
+                        $("#normal").css("background-color", "yellow")
+                    } else {
+                        $("#under").css("background-color", "yellow")
+                    }
+            });
+        }
+
+        function clearform() {
+            document.getElementById("output").innerHTML = "";
+        }
+    </script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1>BMI Calculator</h1>
+
+    <form name="myForm" method="get">
+        <table id="overview" border="1">
+            <tbody>
+                <tr id="under">
+                    <td>Underweight</td>
+                    <td> Less than 18.5</td>
+                </tr>
+                <tr id="normal">
+                    <td>Normal Weight</td>
+                    <td>18.5 - 24.9</td>
+                </tr>
+                <tr id="over">
+                    <td>Overweight</td>
+                    <td>25 - 29.9</td>
+                </tr>
+                <tr id="obese">
+                    <td>Obesity</td>
+                    <td>30 or more</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="height-feet">Height</label>
+                    </td>
+                    <td>
+                        <input type="text" id="height-feet" name="height-feet" value=""> ft <input type="text" id="height-inch" name="height-inch" value=""> in
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="weight">Weight</label>
+                    </td>
+                    <td>
+                        <input type="text" id="weight" name="weight" value=""> lbs
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <input type="button" id="calculate" name="calculate" value="Calculate" onclick="calculateBMI();">
+                        <input type="reset" id="Reset" name="Reset" value="Reset" onclick="clearform();">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <div id="output">
+    </div>
+
+</body>
+</html>
